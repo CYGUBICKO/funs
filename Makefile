@@ -16,15 +16,15 @@ msrepo = https://github.com/dushoff
 ms = makestuff
 Ignore += local.mk
 -include local.mk
--include $(ms)/os.mk
+-include makestuff/os.mk
 
-# -include $(ms)/perl.def
+# -include makestuff/perl.def
 
-Ignore += $(ms)
-## Sources += $(ms)
-Makefile: $(ms) $(ms)/Makefile
-$(ms):
-	git clone $(msrepo)/$(ms)
+Ignore += makestuff
+## Sources += makestuff
+Makefile: makestuff makestuff/Makefile
+makestuff:
+	git clone $(msrepo)/makestuff
 
 ######################################################################
 
@@ -46,10 +46,10 @@ Sources += $(wildcard *.R)
 
 ### Makestuff
 
--include $(ms)/git.mk
--include $(ms)/visual.mk
--include $(ms)/wrapR.mk
--include $(ms)/texdeps.mk
--include $(ms)/pandoc.mk
--include $(ms)/autorefs.mk
+-include makestuff/git.mk
+-include makestuff/visual.mk
+-include makestuff/wrapR.mk
+-include makestuff/texdeps.mk
+-include makestuff/pandoc.mk
+-include makestuff/autorefs.mk
 
