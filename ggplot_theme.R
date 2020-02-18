@@ -21,18 +21,18 @@ facet_theme <- theme(
 	plot.title = element_text(hjust = 0.5, face = "bold", colour = "grey")
 	, legend.position = "none"
 	, axis.ticks.y = element_blank()
-	, axis.text.x = element_text(size = 13)
-	, axis.text.y = element_text(size = 13)
-	, axis.title.x = element_text(size = 13)
-	, axis.title.y = element_text(size = 13)
+	, axis.text.x = element_text(size = 10)
+	, axis.text.y = element_text(size = 10)
+	, axis.title.x = element_text(size = 10)
+	, axis.title.y = element_text(size = 10)
 	, legend.title = element_text(size = 13)
 	, panel.grid.major = element_blank()
 	, panel.grid.minor = element_blank()
 	, panel.spacing = unit(0, "lines")
 	, legend.key.size = unit(.25, "cm")
 	, legend.key = element_rect(fill = "white")
-	, panel.spacing.y = unit(0.5, "lines")
-	, panel.spacing.x = unit(1.5, "lines")
+	, panel.spacing.y = unit(0.3, "lines")
+	, panel.spacing.x = unit(1, "lines")
 	, strip.background = element_blank()
 	, panel.border = element_rect(colour = "grey"
 		, fill = NA
@@ -42,5 +42,5 @@ facet_theme <- theme(
 		, colour = "black"
 		, face = "bold"
 	)
-	, plot.margin = margin(1, 4.5, 1, 1, "cm")
+	#, plot.margin = margin(1, 4.5, 1, 1, "cm")
 )
