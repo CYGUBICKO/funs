@@ -1,3 +1,5 @@
+library(ggplot2)
+
 my_bwtheme <- theme(axis.text.x = element_text(size = 16),
              axis.text.y = element_text(size = 16),
              axis.title.x = element_text(size = 16),

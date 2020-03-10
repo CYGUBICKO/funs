@@ -242,13 +242,15 @@ recodeLabs <- function(df, var, patterns, replacements, insert = TRUE){
 		new_var <- paste0(var, "_new")
 		df[, new_var] <- df[, var]
 		for (p in 1:length(patterns)){
-			df[, new_var] <- apply(df[, new_var], 2
-			, function(x){ifelse(grepl(patterns[[p]], x), replacements[[p]], x)})
+			df[, new_var] <- as.vector(apply(df[, new_var], 2
+				, function(x){ifelse(grepl(patterns[[p]], x), replacements[[p]], x)})
+			)
 		}
 	} else{
 		for (p in 1:length(patterns)){
-			df[, var] <- apply(df[, var], 2
-			  , function(x){ifelse(grepl(patterns[[p]], x), replacements[[p]], x)})
+			df[, var] <- as.vector(apply(df[, var], 2
+			  	, function(x){ifelse(grepl(patterns[[p]], x), replacements[[p]], x)})
+			 )
 		}
 	}
 	return(df)
