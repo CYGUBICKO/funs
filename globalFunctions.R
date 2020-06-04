@@ -1,5 +1,31 @@
 #### ---- Define some important functions ----
 
+#### ---- Impute missing indicator function ----
+imputeCase <- function(df, patterns = "missing:impute"){
+	apply(df, 1, function(x){
+		any(x %in% patterns)
+	})
+}
+
+
+### ---- Generate labels codebook ----
+
+## oldpatterns: exact old label or grep-like pattern within each group. Similar cats are separated by | 
+## Details: oldpatterns and newlabs are in the same order
+
+genlabsCodes <- function(df, var, oldpatterns, newlabs){
+	lab_df <- data.frame(oldlabs = unique(df[[var]]), newlabs = unique(df[[var]]))
+	for (p in seq_along(oldpatterns)){
+		lab_df[["newlabs"]] <- ifelse(grepl(oldpatterns[[p]],  lab_df[["oldlabs"]])
+			, newlabs[[p]]
+			, as.character(lab_df[["newlabs"]])
+		)
+	}
+	colnames(lab_df) <- c(var, paste0(var, "_new"))
+	return(lab_df)
+}
+
+
 ## Extract codebook
 
 ColAttr <- function(x, attrC, ifIsNull) {
@@ -99,7 +125,7 @@ missPropFunc <- function(df){
 	n <- nrow(df)
   	df <- as.data.frame(df)
 	miss_count <- apply(df, 2
-		, function(x) sum(is.na(x)|x == ""|grepl("refuse|NIU|missi", x, ignore.case = TRUE)))
+		, function(x) sum(is.na(x)|x == ""|grepl("^refuse|^NIU|^don\\'t", x, ignore.case = TRUE)))
   	miss_df <- (miss_count
     	%>% enframe(name = "variable")
     	%>% rename(miss_count = value)
