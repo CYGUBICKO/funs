@@ -29,7 +29,7 @@ plotEffects <- function(df, var, xlabs){
 			+ geom_line()
 			+ geom_errorbar(aes(ymin = lower, ymax = upper), width = 0)
 			+ facet_wrap(~services, scales = "free_y")
-			+ facet_theme
+#			+ facet_theme
 		)
 #		p3 <- (ggplot(df, aes_string(x = "services", y = "fit", colour = var, group = var))
 #			+ geom_point(size = 0.5)
