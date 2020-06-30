@@ -51,5 +51,4 @@ Sources += $(wildcard *.R)
 -include makestuff/wrapR.mk
 -include makestuff/texdeps.mk
 -include makestuff/pandoc.mk
--include makestuff/autorefs.mk
 
