@@ -2,11 +2,11 @@
 
 plotEffects <- function(df, var, xlabs, scale = c("response", "log-odds")){
 	pos <- position_dodge(0.5)
-	p1 <- (ggplot(df, aes_string(x = var, y = "fit"))
+	p1 <- (ggplot(df, aes_string(x = var, y = "fit", colour = "method"), alpha = 0.2)
+		+ scale_colour_manual(values = c("red", "blue"))
 		+ labs(x = xlabs
 			, y = "Log-odds of\nimproved service"
 		)
-		+ guides(colour = FALSE)
 		+ theme(legend.position = "bottom")
 	)
 	scale <- match.arg(scale)
@@ -26,9 +26,8 @@ plotEffects <- function(df, var, xlabs, scale = c("response", "log-odds")){
 			+ guides(fill = FALSE)
 		)
 	} else {
-		p2 <- (p1 + geom_point(size = 0.6)
-			+ geom_line()
-			+ geom_errorbar(aes(ymin = lower, ymax = upper), width = 0)
+		p2 <- (p1 + geom_point(position = position_dodge(0.3), size = 0.6)
+			+ geom_pointrange(aes(ymin = lower, ymax = upper), position = position_dodge(0.3))
 		)
 	}
 	return(p2)
